@@ -1,0 +1,6 @@
+db_data/
+node_modules/
+src/package-lock.json
+src/.env
+.docker/.env
+src/migrations.txt

@@ -1,0 +1,17 @@
+# Use a imagem oficial do MySQL
+FROM mysql:5
+
+# Defina as variáveis de ambiente para a senha do MySQL
+COPY .env .
+ENV MYSQL_ROOT_PASSWORD=root
+ENV DB_USER=$DB_HOST
+ENV DB_PWD=$DB_PWD
+ENV DB_NAME=$DB_NAME
+ENV DB_HOST=$DB_HOST
+ENV DB_PORT=$DB_PORT
+
+# EXPOSE 3306
+
+
+#docker run --rm -it -p 3306:3306/tcp -p 33060:33060/tcp -e MYSQL_ROOT_PASSWORD=admin apicontatos-bd:latest
+#docker run -d -p 3306:3306 -e MYSQL_ROOT_PASSWORD=RootPassword -e MYSQL_DATABASE=Backoffice -e MYSQL_USER=MainUser -e MYSQL_PASSWORD=MainPassword apicontatos-bd:latest

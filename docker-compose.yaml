@@ -1,0 +1,35 @@
+version: '3'
+
+networks:
+  dev-net:
+    driver:
+      bridge
+      
+services:
+  apicontatos:
+    image: apicontatos:latest
+    #command: bash
+    user: "${UID:-1000}:${GID:-1000}"
+    #stdin_open: true
+    tty: true
+    volumes:
+      - ./src:/app
+    ports:
+      - "3000:3000"
+    networks:
+      - dev-net
+
+  mysql:
+    image: mysql:latest
+    container_name: apicontatos-db
+    environment:
+      - MYSQL_ROOT_PASSWORD=123
+      - MYSQL_DATABASE=db_contatos
+      - MYSQL_USER=user
+      - MYSQL_PASSWORD=123456
+    volumes:
+      - ./db_data:/var/lib/mysql
+    ports:
+      - "3306:3306"
+    networks:
+      - dev-net
